@@ -1,0 +1,9 @@
+{
+  "name": "PARROTS_DONT_TWEET",
+  "version": "0.0.1",
+  "main": "server.js",
+  "repository": "git@github.com:nkernis/PARROTS_DONT_TWEET.git",
+  "author": "<GENERIC ERROR> <<genericemailerror@gmail.com>>",
+  "license": "The Unlicense",
+  "dependencies": {}
+}
