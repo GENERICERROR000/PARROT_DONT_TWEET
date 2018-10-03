@@ -4,6 +4,12 @@
   "main": "server.js",
   "repository": "git@github.com:nkernis/PARROTS_DONT_TWEET.git",
   "author": "<GENERIC ERROR> <<genericemailerror@gmail.com>>",
-  "license": "The Unlicense",
-  "dependencies": {}
+  "license": "Unlicense",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoosastic": "^4.4.1",
+    "mongoose": "^5.3.1",
+    "morgan": "^1.9.1",
+    "twit": "^2.2.11"
+  }
 }
