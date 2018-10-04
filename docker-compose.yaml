@@ -1,0 +1,32 @@
+version: "3.1"
+
+services:
+  parrots_dont_tweet_api:
+    image: parrots_dont_tweet:0.0.1
+#    networks:
+#      - parrot-network
+#    depends_on:
+#      - parrots_dont_tweet_db
+    environment:
+      - ENV DB_PORT='9200'
+      - ENV API_PORT='3000'
+      - ENV TWIT_CONSUMER_KEY=''
+      - ENV TWIT_CONSUMER_SECRET=''
+      - ENV TWIT_ACCESS_TOKEN=''
+      - ENV TWIT_ACCESS_TOKEN_SECRET=''
+
+  #  parrots_dont_tweet_db:
+  #    image:
+  #    volumes:
+  #      - elasticsearch-data:/var/lib/docker/volumes/docker_farm-data
+  #    networks:
+  #      - parrot-network
+
+#networks:
+#  parrot-network:
+#
+#volumes:
+# elasticsearch-data:
+#
+#secrets:
+# Use these instead?
