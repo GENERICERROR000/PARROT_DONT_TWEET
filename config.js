@@ -9,10 +9,10 @@ module.exports = {
     next()
   },
   'apiKey': {
-    consumer_key: process.env.TWIT_CK,
-    consumer_secret: process.env.TWIT_CS,
-    access_token: process.env.TWIT_AT,
-    access_token_secret: process.env.TWIT_ATS,
+    consumer_key: process.env.TWIT_CONSUMER_KEY,
+    consumer_secret: process.env.TWIT_CONSUMER_SECRET,
+    access_token: process.env.TWIT_ACCESS_TOKEN,
+    access_token_secret: process.env.TWIT_ACCESS_TOKEN_SECRET,
     timeout_ms: 60000
   }
 }

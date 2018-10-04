@@ -1,7 +1,6 @@
 const bodyParser = require('body-parser'),
   app = require('express')(),
   logger = require('morgan'),
-  bodyParser = require('body-parser')(),
   config = require('./config'),
   Twit = require('./controllers/twit')
 
@@ -15,7 +14,7 @@ app.use(config.headers)
 Twit()
 
 // ----------> Init Server <----------
-app.listen(configport,  (err) => {
+app.listen(config.port,  (err) => {
   if(err) console.log('Something went wrong', err)
   console.log(`Server started on port ${config.port}...`)
 })
