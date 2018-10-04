@@ -7,6 +7,8 @@ EXPOSE 3000
 
 # Environment Variables
 ENV DB_PORT='9200'
+ENV DB_HOST='elasticsearch_parrot'
+ENV DB_INDEX='trump-tweets'
 ENV API_PORT='3000'
 ENV TWIT_CONSUMER_KEY='null'
 ENV TWIT_CONSUMER_SECRET='null'
