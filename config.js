@@ -1,7 +1,7 @@
 module.exports = {
   'elasticsearch': {
     'config': {
-      'host': `${process.env.DB_HOST}` + (`${process.env.DB_PORT}` || '9200'),
+      'host': `${process.env.DB_HOST}` + ':' + (`${process.env.DB_PORT}` || '9200'),
       'log': 'trace'
     },
     'index': process.env.DB_INDEX
