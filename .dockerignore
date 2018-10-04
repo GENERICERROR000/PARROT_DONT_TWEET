@@ -1,0 +1,11 @@
+.git/
+.DS_Store
+README.md
+node_modules/
+package-lock.json
+yarn.lock
+yarn-error.log
+Dockerfile
+.dockerignore
+.gitignore
+LICENSE

@@ -5,6 +5,7 @@ module.exports = {
   },
   'port': process.env.API_PORT || 3000,
   'userId': `${process.env.TWITTER_USER_ID}`,
+  'index': 'trump-tweets',
   'headers': (req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, UPDATE, DELETE')
