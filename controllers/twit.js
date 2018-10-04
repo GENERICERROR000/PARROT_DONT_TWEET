@@ -1,9 +1,11 @@
 const twit = require('twit'),
-  config = require('../config')
+  config = require('../config'),
+  { saveTweet } = require('./elasticsearch')
 
 module.exports = () => {
   // Config Settings For Twit
   const Twitter = new twit(config.apiKey)
+
 
   // Start Listening To Twitter Stream
   // const stream = Twitter.stream('statuses/filter', {track: ['#FixMyCity', '#fixmycity', '#fmc', '#FMC']})

@@ -1,7 +1,9 @@
 module.exports = {
-  'secret': `${process.env.CRYPT_SECRET}`,
-  'database': 'localhost/fixmycitydb',
-  'port': process.env.PORT || 3000,
+  'elasticsearch': {
+    host: 'localhost:' + (process.env.DB_PORT || '9200'),
+    log: 'trace'
+  },
+  'port': process.env.API_PORT || 3000,
   'headers': (req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, UPDATE, DELETE')
