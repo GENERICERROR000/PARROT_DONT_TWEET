@@ -7,16 +7,14 @@ services:
 #      - parrot-network
 #    depends_on:
 #      - parrots_dont_tweet_db
+    ports:
+      - "3000:3000"
     environment:
-      - ENV DB_PORT='9200'
-      - ENV API_PORT='3000'
-      - ENV TWIT_CONSUMER_KEY=''
-      - ENV TWIT_CONSUMER_SECRET=''
-      - ENV TWIT_ACCESS_TOKEN=''
-      - ENV TWIT_ACCESS_TOKEN_SECRET=''
+      - DB_PORT=9200
+      - API_PORT=3000
 
   #  parrots_dont_tweet_db:
-  #    image:
+  #    image: parrots_dont_tweet_db
   #    volumes:
   #      - elasticsearch-data:/var/lib/docker/volumes/docker_farm-data
   #    networks:

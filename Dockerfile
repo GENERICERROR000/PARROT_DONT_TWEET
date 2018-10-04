@@ -1,4 +1,4 @@
-FROM node:8.12.0-alpine
+FROM keymetrics/pm2:10-alpine
 LABEL Maintainer="GENERIC ERROR"
 LABEL Description="Dockerfile for PARROTS_DONT_TWEET API"
 
@@ -19,12 +19,9 @@ COPY . /opt/PARROTS_DONT_TWEET/
 # Change to root of PARROTS_DONT_TWEET
 WORKDIR /opt/PARROTS_DONT_TWEET/
 
-# Install pm2 to daemonize app
-RUN yarn global add pm2
-
 # Install node packages
 RUN yarn cache clean --force && \
     yarn install --save
 
 # Start API
-CMD ["pm2", "start", "server.js"]
+CMD ["pm2-runtime", "server.js"]

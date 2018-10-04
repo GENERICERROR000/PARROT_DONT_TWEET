@@ -1,6 +1,6 @@
 module.exports = {
   'elasticsearch': {
-    host: 'localhost:' + (process.env.DB_PORT || '9200'),
+    host: 'parrots_dont_tweet_db:' + (process.env.DB_PORT || '9200'),
     log: 'trace'
   },
   'port': process.env.API_PORT || 3000,
