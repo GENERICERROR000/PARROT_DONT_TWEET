@@ -1,17 +1,18 @@
 version: "3.1"
-
 services:
   parrots_dont_tweet_api:
-    image: parrots_dont_tweet:0.0.1
+    image: nkernis/parrots_dont_tweet:0.0.1
     container_name: parrots_dont_tweet
-   networks:
-     - parrot-network
-   depends_on:
-     - elasticsearch_parrot
+    networks:
+      - parrot-network
+    depends_on:
+      - elasticsearch_parrot
     ports:
       - "3000:3000"
     environment:
       - DB_PORT=9200
+      - DB_HOST=elasticsearch_parrot
+      - DB_INDEX=trump-tweets
       - API_PORT=3000
 
   elasticsearch_parrot:
@@ -31,7 +32,7 @@ networks:
  parrot-network:
 
 volumes:
-elasticsearch-data:
+  elasticsearch-data:
 
 #secrets:
 # Use these instead?

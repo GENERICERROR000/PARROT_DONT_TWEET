@@ -9,6 +9,7 @@ exports.saveTweet = async (data) => {
   await client.create({
     index: config.elasticsearch.index,
     type: '_doc',
+    id: data.id,
     body: data
   })
 }
