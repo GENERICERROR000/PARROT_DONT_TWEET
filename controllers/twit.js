@@ -1,15 +1,10 @@
 const twit = require('twit')
+config = require('../config'),
 const Issue = require('../models/Issue')
 
 module.exports = () => {
   // Config Settings For Twit
-  const Twitter = new twit({
-    consumer_key: process.env.TWIT_CK,
-    consumer_secret: process.env.TWIT_CS,
-    access_token: process.env.TWIT_AT,
-    access_token_secret: process.env.TWIT_ATS,
-    timeout_ms: 60000
-  })
+  const Twitter = new twit(config.apiKey)
 
   // Start Listening To Twitter Stream
   const stream = Twitter.stream('statuses/filter', {track: ['#FixMyCity', '#fixmycity', '#fmc', '#FMC']})
