@@ -6,41 +6,23 @@ module.exports = () => {
   // Config Settings For Twit
   const Twitter = new twit(config.apiKey)
 
+  // FN LOOK UP A USER
+  // Twitter.get('users/lookup', { screen_name: '' },  function (err, data, response) {
+  //   console.log(data)
+  // })
 
   // Start Listening To Twitter Stream
-  // const stream = Twitter.stream('statuses/filter', {track: ['#FixMyCity', '#fixmycity', '#fmc', '#FMC']})
-  //
-  // // Set Action For New Tweet
+  const stream = Twitter.stream('statuses/filter', { follow: config.userId })
+
+  // Set Action For New Tweet
+  stream.on('error', (err) => {
+    console.log(err);
+  })
+
+  // TODO: reply to tweet and store it in elasticsearch
   // stream.on('tweet', (tweet) => {
-  //
-  //
-  //   const media = () => {
-  //     if(tweet.extended_entities) return tweet.extended_entities.media.map(img => img.media_url_https)
-  //     return ''
-  //   }
-  //
-  //   if (!tweet.geo) {
-  //     const message = `.@${tweet.user.screen_name} It seems your post didn't have a location. Please add your precise location so we know where the issue is. Thank you!`
-  //
-  //     Twitter.post('statuses/update', { status: message }, (err, data, response) => {
-  //         if(err) console.log("Error posting reply Tweet:", err)
-  //     })
-  //   } else {
-  //     const issue = new Issue ({
-  //       posted_by: tweet.user.screen_name,
-  //       posted_by_id: tweet.user.id,
-  //       profile_image: tweet.user.profile_image_url_https,
-  //       posted_on: new Date(tweet.created_at),
-  //       tweet_content: tweet.text,
-  //       media: media(),
-  //       location: {
-  //         coordinates: tweet.geo.coordinates
-  //       }
-  //     })
-  //
-  //     issue.save((err, newIssue) => {
-  //       if(err) console.log("Error saving Tweet:", err)
-  //     })
-  //   }
+  //   Twitter.post('statuses/update', { status: message }, (err, data, response) => {
+  //       if(err) console.log("Error posting reply Tweet:", err)
+  //   })
   // })
 }

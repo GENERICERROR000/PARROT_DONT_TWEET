@@ -4,7 +4,7 @@ const config = require('../config'),
 // ----------> Connect To Twitter API <----------
 const client = new elasticsearch.Client(config.elasticsearch)
 
-// ----------> Saves a tweet to elesticsearch <----------
+// Saves a tweet to elesticsearch
 exports.saveTweet = async () => {
   await client.create({
     index: 'myindex',
