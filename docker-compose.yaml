@@ -35,6 +35,3 @@ networks:
 
 volumes:
   elasticsearch-data:
-
-#secrets:
-# Use these instead?
