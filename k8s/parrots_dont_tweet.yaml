@@ -1,21 +1,3 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: parrot-dont-tweet
-  labels:
-    app: parrot-dont-tweet
-spec:
-  type: NodePort
-  selector:
-    app: parrot-dont-tweet
-  ports:
-    - port: 80
-      protocol: TCP
-      targetPort: 80
-      nodePort: 31118
-
----
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -32,9 +14,42 @@ spec:
     spec:
       containers:
       - name: parrot-dont-tweet
-        image: nginx
-        # image: nkernis/parrots_dont_tweet:0.0.1
+        image: nkernis/parrots_dont_tweet:0.0.1
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 3000
           protocol: TCP
+        env:
+          - name: DB_PORT
+            value: 9200
+          - name: DB_HOST
+            value: "elasticsearch_parrot"
+          - name: DB_INDEX
+            value: "trump-tweets"
+          - name: API_PORT
+            value: 3000
+          - name: TWITTER_USER_ID
+            valueFrom:
+              secretKeyRef:
+                name: twitter-secrets
+                key: twitter.user.id
+          - name: TWIT_CONSUMER_KEY
+            valueFrom:
+              secretKeyRef:
+                name: twitter-secrets
+                key: twitter.consumer.key
+          - name: TWIT_CONSUMER_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: twitter-secrets
+                key: twitter.consumer.secret
+          - name: TWIT_ACCESS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: twitter-secrets
+                key: twitter.access.token
+          - name: TWIT_ACCESS_TOKEN_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: twitter-secrets
+                key: twitter.access.token.secret
