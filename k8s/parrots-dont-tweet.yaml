@@ -20,15 +20,27 @@ spec:
         - containerPort: 3000
           protocol: TCP
         env:
-          - name: DB_PORT
-            value: 9200
-          - name: DB_HOST
-            value: "elasticsearch_parrot"
-          - name: DB_INDEX
-            value: "trump-tweets"
           - name: API_PORT
             value: 3000
-          - name: TWITTER_USER_ID
+          - name: AWS_REGION
+            value: 'us-east-1'
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: twitter-secrets
+                key: aws.access.key.id
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: twitter-secrets
+                key: aws.secret.access.key
+
+          - name: TWITTER_USER_ID_TO_PARROT
+            valueFrom:
+              secretKeyRef:
+                name: twitter-secrets
+                key: twitter.user.id
+          - name: TWITTER_USER_ID_PARROT
             valueFrom:
               secretKeyRef:
                 name: twitter-secrets

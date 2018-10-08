@@ -1,13 +1,16 @@
 const bodyParser = require('body-parser'),
   app = require('express')(),
   logger = require('morgan'),
+  helmet = require('helmet'),
   config = require('./config'),
   Twit = require('./controllers/twit')
 
 // ----------> Set Middleware <----------
+
+app.use(logger('common'))
+app.use(helmet())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(logger('dev'))
 app.use(config.headers)
 
 // ----------> Connect To Twitter API <----------
