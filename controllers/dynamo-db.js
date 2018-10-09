@@ -13,9 +13,9 @@ exports.saveTweet = (userId, tweet) => {
 
   docClient.put(params, (err, data) => {
     if (err) {
-      console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2))
+      console.error("unable to add item:", err)
     } else {
-      console.log("Added item:", JSON.stringify(data, null, 2))
+      console.log("ITEM ADDED:", data)
     }
   })
 }
