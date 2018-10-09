@@ -1,3 +1,6 @@
+# Run Files With Sensitive Data
+.secret/
+
 # Logs
 logs
 *.log
