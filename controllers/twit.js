@@ -17,7 +17,7 @@ module.exports = () => {
     switch (tweet.user.id_str) {
       case idToParrot: // If tweet is from User being followed
         saveTweet(idToParrot, tweet)
-
+        console.log("TWEET TO PARROT:", tweet)
         // Post a new tweet with text from received tweet
         Twitter.post('statuses/update', { status: tweet.text }, (err, data, response) => {
           if (err) {
@@ -30,6 +30,7 @@ module.exports = () => {
 
       case idParrot: // If tweet is from Parroting acount
         saveTweet(idParrot, tweet)
+        console.log("PARROT TWEETED:", tweet);
         break
     }
   })

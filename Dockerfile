@@ -10,7 +10,7 @@ WORKDIR /opt/PARROTS_DONT_TWEET/
 # Install packages
 RUN npm install pm2 --global && npm install
 # Start API
-CMD ["pm2-runtime", "app.js"]
+CMD ["pm2-runtime", "server.js"]
 # Environment Variables Required For Running (Not Set)
 # ENV API_PORT
 # ENV AWS_REGION
