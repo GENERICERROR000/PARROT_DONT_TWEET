@@ -1,6 +1,6 @@
 const twit = require('twit'),
   config = require('../config'),
-  { saveTweet } = require('./dynamoDb')
+  { saveTweet } = require('./dynamo-db')
 
 module.exports = () => {
   // Users
@@ -10,7 +10,7 @@ module.exports = () => {
   const Twitter = new twit(config.twitter)
 
   // Start Listening To Twitter Stream
-  const stream = Twitter.stream('statuses/filter', { follow: [idToParrot, idParrot] })
+  const stream = Twitter.stream('statuses/filter', { follow: [idToParrot, idParrot], filter_level: 'medium' })
 
   // Action to take when a tweet occurs
   stream.on('tweet', (tweet) => {

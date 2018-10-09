@@ -11,7 +11,6 @@ app.use(logger('common'))
 app.use(helmet())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(config.headers)
 
 // ----------> Connect To Twitter API <----------
 Twit()

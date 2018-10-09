@@ -1,11 +1,5 @@
 module.exports = {
   'port': process.env.API_PORT || 3000,
-  'headers': (req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, UPDATE, DELETE')
-    res.setHeader('Access-Control-Allow-Headers', 'x-access-token, issue_id')
-    next()
-  },
   'aws': {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
