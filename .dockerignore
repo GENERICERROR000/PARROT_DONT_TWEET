@@ -1,3 +1,5 @@
+k8s/
+scripts/
 .git/
 .DS_Store
 README.md

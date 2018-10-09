@@ -14,54 +14,53 @@ spec:
     spec:
       containers:
       - name: parrot-dont-tweet
-        image: nkernis/parrots_dont_tweet:0.0.1
+        image: nkernis/parrots_dont_tweet:0.0.1-arm
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
           protocol: TCP
         env:
           - name: API_PORT
-            value: 3000
+            value: '3000'
           - name: AWS_REGION
-            value: 'us-east-1'
+            value: us-east-1
           - name: AWS_ACCESS_KEY_ID
             valueFrom:
               secretKeyRef:
                 name: twitter-secrets
-                key: aws.access.key.id
-          - name: AWS_ACCESS_KEY_ID
+                key: aws-access-key-id
+          - name: AWS_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
                 name: twitter-secrets
-                key: aws.secret.access.key
-
+                key: aws-secret-access-key
           - name: TWITTER_USER_ID_TO_PARROT
             valueFrom:
               secretKeyRef:
                 name: twitter-secrets
-                key: twitter.user.id
+                key: twitter-user-id-to-parrot
           - name: TWITTER_USER_ID_PARROT
             valueFrom:
               secretKeyRef:
                 name: twitter-secrets
-                key: twitter.user.id
+                key: twitter-user-id-parrot
           - name: TWIT_CONSUMER_KEY
             valueFrom:
               secretKeyRef:
                 name: twitter-secrets
-                key: twitter.consumer.key
+                key: twitter-consumer-key
           - name: TWIT_CONSUMER_SECRET
             valueFrom:
               secretKeyRef:
                 name: twitter-secrets
-                key: twitter.consumer.secret
+                key: twitter-consumer-secret
           - name: TWIT_ACCESS_TOKEN
             valueFrom:
               secretKeyRef:
                 name: twitter-secrets
-                key: twitter.access.token
+                key: twitter-access-token
           - name: TWIT_ACCESS_TOKEN_SECRET
             valueFrom:
               secretKeyRef:
                 name: twitter-secrets
-                key: twitter.access.token.secret
+                key: twitter-access-token-secret
