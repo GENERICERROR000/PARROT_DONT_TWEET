@@ -12,11 +12,12 @@ module.exports = () => {
   // Start Listening To Twitter Stream
   const stream = Twitter.stream('statuses/filter', { follow: [idToParrot, idParrot], filter_level: 'low' })
 
+  // Remove empty strings - cause DynamoDb to throw error
   const removeEmptyStringElements = (obj) => {
     for (var prop in obj) {
-      if (typeof obj[prop] === 'object') {// dive deeper in
+      if (typeof obj[prop] === 'object') {
         removeEmptyStringElements(obj[prop])
-      } else if(obj[prop] === '') {// delete elements that are empty strings
+      } else if(obj[prop] === '') {
         obj[prop] = 'EMPTY_STRING_FIX'
       }
     }
@@ -24,17 +25,27 @@ module.exports = () => {
     return obj
   }
 
+  // Check if tweet has been truncated and need full_text
+  const selectText = (tweet) => {
+    if (tweet.truncated) {
+      return tweet.extended_tweet.full_text
+    } else {
+      return tweet.text
+    }
+  }
+
   // Action to take when a tweet occurs
   stream.on('tweet', (tweet) => {
-    const cleanedTweet = removeEmptyStringElements(tweet)
+    var cleanedTweet = removeEmptyStringElements(tweet)
 
     switch (cleanedTweet.user.id_str) {
       case idToParrot: // If tweet is from User being followed
         saveTweet(idToParrot, cleanedTweet)
         console.log("TWEET TO PARROT:", cleanedTweet)
+        var tweetText = selectText(cleanedTweet)
 
         // Post a new tweet with text from received tweet
-        Twitter.post('statuses/update', { status: cleanedTweet.text }, (err, data, response) => {
+        Twitter.post('statuses/update', { status: tweetText }, (err, data, response) => {
           if (err) console.error("Error posting Parrot Tweet:", err)
         })
         break
