@@ -21,7 +21,7 @@ module.exports = () => {
         obj[prop] = 'EMPTY_STRING_FIX'
       }
     }
-    console.log(obj);
+    console.log(obj)
     return obj
   }
 
