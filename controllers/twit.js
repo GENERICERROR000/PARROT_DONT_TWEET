@@ -10,7 +10,7 @@ module.exports = () => {
   const Twitter = new twit(config.twitter)
 
   // Start Listening To Twitter Stream
-  const stream = Twitter.stream('statuses/filter', { follow: [idToParrot, idParrot], filter_level: 'low' })
+  const stream = Twitter.stream('statuses/filter', { follow: [idToParrot, idParrot], filter_level: 'medium' })
 
   // Remove empty strings - cause DynamoDb to throw error
   const removeEmptyStringElements = (obj) => {
