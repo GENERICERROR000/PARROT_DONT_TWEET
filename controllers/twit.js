@@ -10,7 +10,7 @@ module.exports = () => {
   const Twitter = new twit(config.twitter)
 
   // Start Listening To Twitter Stream
-  const stream = Twitter.stream('statuses/filter', { follow: [idToParrot, idParrot], filter_level: 'medium' })
+  const stream = Twitter.stream('statuses/filter', { follow: [idToParrot, idParrot], filter_level: 'low' })
 
   // Remove empty strings - cause DynamoDb to throw error
   const removeEmptyStringElements = (obj) => {
@@ -21,7 +21,6 @@ module.exports = () => {
         obj[prop] = 'EMPTY_STRING_FIX'
       }
     }
-    console.log(obj)
     return obj
   }
 
@@ -37,7 +36,6 @@ module.exports = () => {
   // Action to take when a tweet occurs
   stream.on('tweet', (tweet) => {
     var cleanedTweet = removeEmptyStringElements(tweet)
-
     switch (cleanedTweet.user.id_str) {
       case idToParrot: // If tweet is from User being followed
         saveTweet(idToParrot, cleanedTweet)
