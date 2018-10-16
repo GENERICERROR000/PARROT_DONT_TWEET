@@ -16,7 +16,7 @@ case $1 in
     -e TWIT_CONSUMER_SECRET=$AWS_SECRET_ACCESS_KEY \
     -e TWIT_ACCESS_TOKEN=$AWS_SECRET_ACCESS_KEY \
     -e TWIT_ACCESS_TOKEN_SECRET=$AWS_SECRET_ACCESS_KEY \
-    nkernis/parrots_dont_tweet:$2-arm
+    nkernis/parrot_dont_tweet:$2-arm
     ;;
   stop)
     docker stop $2
